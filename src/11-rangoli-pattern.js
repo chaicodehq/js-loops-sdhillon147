@@ -16,9 +16,9 @@
  *
  * Pattern for n=3:
  *     *
- *   * *
+ *    * *
  *   * * *
- *   * *
+ *    * *
  *     *
  *
  * (Each row is a string in the returned array)
@@ -36,5 +36,29 @@
  *   rangoli(3) // => ["  *", " * *", "* * *", " * *", "  *"]
  */
 export function rangoli(n) {
-  // Your code here
+  if (!Number.isInteger(n) || n <= 0) {
+    return [];
+  }
+  const pattern = [];
+
+  for (let i = 1; i <= 2 * n - 1; i++) {
+    let row = "";
+    let leadingSpaces = n - i;
+    if (i > n) leadingSpaces = leadingSpaces * -1;
+
+    for (let j = 0; j < n; j++) {
+      if (j < leadingSpaces) {
+        row += " ";
+      } else {
+        row += "*";
+        if (j < n - 1) {
+          row += " ";
+        }
+      }
+    }
+
+    pattern.push(row);
+  }
+
+  return pattern;
 }
